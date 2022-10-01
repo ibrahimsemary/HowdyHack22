@@ -5,7 +5,13 @@ import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
 import App from "./components/App";
+import reducers from './reducers';
 
-const store = "replace me";
+const store = createStore(reducers);
 
-ReactDOM.render(<App />, document.querySelector("#root"));
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.querySelector("#root")
+);
