@@ -1,4 +1,4 @@
-export const placesSelected = (fromLoc, toLoc) => {
+export const setPlacesSelected = (fromLoc, toLoc) => {
     return {
         type: "PLACES_SELECTED",
         payload: {

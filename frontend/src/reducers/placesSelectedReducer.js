@@ -1,4 +1,4 @@
-const placesSelected = (state = {}, action) => {
+const placesSelectedReducer = (state = [], action) => {
     switch (action.type) {
         case "PLACES_SELECTED":
             return action.payload;
@@ -7,4 +7,4 @@ const placesSelected = (state = {}, action) => {
     }
 };
 
-export default placesSelected;
+export default placesSelectedReducer;
