@@ -4,7 +4,7 @@ import axios from "axios";
 const get_weathers = async(city, country) => {
     const axios = require("axios");
     // var city = readLine("What is the name of the city you are visiting");
-    // var country = readLine("What is the country you are visiting (give it in abbv eg. Turkey is tr)")
+    // var country = readLine("What is the country you are visiting (give it in abbv eg. Turkey is tr)") houston,
     var location = city+","+country;
     const options = {
         method: 'GET',
@@ -14,10 +14,11 @@ const get_weathers = async(city, country) => {
             'X-RapidAPI-Host': 'aerisweather1.p.rapidapi.com'
         }
     };
-
-    axios.request(options).then(function (response) {
+    return await axios.request(options).then(function (response) {
         console.log(response.data);
     }).catch(function (error) {
         console.error(error);
     });
+
+
 }
