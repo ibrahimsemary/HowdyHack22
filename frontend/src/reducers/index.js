@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import { placesSelected } from "../actions";
+import placesSelectedReducer from "./placesSelectedReducer";
 
 export default combineReducers({
-    placesSelected: placesSelected,
+    placesSelected: placesSelectedReducer,
 });

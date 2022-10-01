@@ -1,15 +1,26 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { TextField } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
-const Inputs = () => {
+import { connect } from "react-redux";
+import { setPlacesSelected } from "../actions";
+
+const Inputs = (props) => {
     const [comingFrom, setComingFrom] = useState("");
     const [goingTo, setGoingTo] = useState("");
 
     const [depDate, setDepDate] = useState(null);
     const [returnDate, setReturnDate] = useState(null);
+
+
+    const submit = () => {
+        props.setPlacesSelected(comingFrom, goingTo);
+    };
+
+    console.log(props);
+
     return (
         <div className='ui container'>
             <div className='input'>
@@ -17,7 +28,7 @@ const Inputs = () => {
                 <TextField
                     onChange={(e) => setComingFrom(e.target.value)}
                     value={comingFrom}
-                    placeholder= "From..."
+                    placeholder='From...'
                 />
             </div>
             <div className='input'>
@@ -25,8 +36,7 @@ const Inputs = () => {
                 <TextField
                     onChange={(e) => setGoingTo(e.target.value)}
                     value={goingTo}
-                    placeholder= "To..."
-
+                    placeholder='To...'
                 />
             </div>
             <div className='input'>
@@ -53,8 +63,19 @@ const Inputs = () => {
                     />
                 </LocalizationProvider>
             </div>
+            <button className='ui primary button' onClick={submit}>
+                Submit
+            </button>
         </div>
     );
 };
 
-export default Inputs;
+const mapStateToProps = (state) => {
+    return {
+        placesSelected: state.placesSelected,
+    };
+};
+
+export default connect(mapStateToProps, {
+    setPlacesSelected: setPlacesSelected,
+})(Inputs);
