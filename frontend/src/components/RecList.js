@@ -45,6 +45,10 @@ const RecList = (props) => {
         props.setRecList(newRecList);
     };
     const displayList = () => {
+        for (const key in props.recList) {
+            return;
+        }
+
         return props.recList.map((item, index) => {
             return (
                 <ListItem key={index}>
@@ -89,12 +93,14 @@ const RecList = (props) => {
                 >
                     {displayList()}
                     <br />
-                    <button
-                        className='ui primary button'
-                        onClick={removeChecked}
-                    >
-                        Add to my list
-                    </button>
+                    <div className='to-center'>
+                        <button
+                            className='ui primary button'
+                            onClick={removeChecked}
+                        >
+                            Add to my list
+                        </button>
+                    </div>
                 </List>
             </div>
         </div>

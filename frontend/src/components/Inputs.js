@@ -3,6 +3,8 @@ import { TextField } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import get_clothes from "../Axios/parsedata";
+import { setRecList } from "../actions";
 
 import { connect } from "react-redux";
 import { setPlacesSelected } from "../actions";
@@ -14,9 +16,11 @@ const Inputs = (props) => {
     const [depDate, setDepDate] = useState(null);
     const [returnDate, setReturnDate] = useState(null);
 
-    const submit = () => {
-        props.setPlacesSelected(comingFrom, goingTo);
-    };
+    const submit = async () => {
+        await props.setPlacesSelected(comingFrom, goingTo);
+        const response = await get_clothes(goingTo);
+        props.setRecList(response)
+        };
 
     return (
         <div className='input-container'>
@@ -112,4 +116,5 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
     setPlacesSelected: setPlacesSelected,
+    setRecList: setRecList,
 })(Inputs);
