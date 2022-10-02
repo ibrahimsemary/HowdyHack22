@@ -8,8 +8,8 @@ const get_weathers = async (location) => {
     // let location = `${city}, ${country}`
     // location = "tokyo,jp";
 
-    const HIGH_WEATHER_DAY_TEMP_MIN = 87
-    const MEDIUM_WEATHER_DAY_TEMP_MIN = 55
+    const HIGH_WEATHER_DAY_TEMP_MIN = 80
+    const MEDIUM_WEATHER_DAY_TEMP_MIN = 50
 
     let weather = {
         highWeatherDays: 0,

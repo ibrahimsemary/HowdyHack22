@@ -9,9 +9,9 @@ export const setPlacesSelected = (fromLoc, toLoc) => {
     };
 };
 
-export const setRecList = (location) => async (dispatch) => {
+export const setRecList = (comingFrom, location) => async (dispatch) => {
     const list = [];
-    const response = await get_clothes(location);
+    const response = await get_clothes(comingFrom, location);
     response.forEach((element) => {
         if (element.count > 0) {
             list.push(element);
@@ -52,5 +52,12 @@ export const deleteFromMyList = (item) => {
     return {
         type: "REMOVE_FROM_MY_LIST",
         payload: item,
+    };
+};
+
+export const setDuration = (big,small) => {
+    return {
+        type: "SET_DURATION",
+        payload: [big,small],
     };
 };
