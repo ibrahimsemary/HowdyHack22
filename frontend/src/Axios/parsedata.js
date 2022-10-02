@@ -231,6 +231,7 @@ const get_clothes = async (location) => {
     }
     if(location[location.length-2] != 'u' && location[location.length-1] != 's'){
         clothes[30].count = 1;
+        clothes[29].count = 0;
     }
     console.log(clothes);
     return clothes;
