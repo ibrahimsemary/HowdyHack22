@@ -1,6 +1,6 @@
 import get_weathers from '../Axios/weatherapi'
 
-const get_clothes = async (location) => {
+const get_clothes = async (from, location) => {
     let data = await get_weathers(location);
     console.log(data)
     let clothes = [
@@ -229,7 +229,7 @@ const get_clothes = async (location) => {
         clothes[16].count = 1;
         clothes[17].count = 1;
     }
-    if(location[location.length-2] != 'u' && location[location.length-1] != 's'){
+    if(location[location.length-2] != 'u' && location[location.length-1] != 's' || from[from.length-2] != 'u' && from[from.length-1] != 's'){
         clothes[30].count = 1;
         clothes[29].count = 0;
     }
