@@ -178,6 +178,12 @@ const get_clothes = async (location) => {
             count: 0,
             isChecked: false
         },
+        //29
+        {
+            item: "ID",
+            count: 1,
+            isChecked: false
+        }
 
 
     ]
