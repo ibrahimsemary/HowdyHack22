@@ -112,6 +112,86 @@ const get_clothes = async (location) => {
             count: 0,
             isChecked: false
         },
+        //18
+        {
+            item: "deodorant",
+            count: 0,
+            isChecked: false
+        },
+        //19
+        {
+            item: "phone charger",
+            count: 1,
+            isChecked: false
+        },
+        //20
+        {
+            item: "toothpaste",
+            count: 1,
+            isChecked: false
+        },
+        //21
+        {
+            item: "toothbrush",
+            count: 1,
+            isChecked: false
+        },
+        //22
+        {
+            item: "wallet",
+            count: 1,
+            isChecked: false
+        },
+        //23
+        {
+            item: "water bottle",
+            count: 0,
+            isChecked: false
+        },
+        //24
+        {
+            item: "towel",
+            count: 0,
+            isChecked: false
+        },
+        //25
+        {
+            item: "swim gear",
+            count: 0,
+            isChecked: false
+        },
+        //26
+        {
+            item: "sleep wear",
+            count: 1,
+            isChecked: false
+        },
+        //27
+        {
+            item: "laptop",
+            count: 1,
+            isChecked: false
+        },
+        //28
+        {
+            item: "sunglass",
+            count: 0,
+            isChecked: false
+        },
+        //29
+        {
+            item: "ID",
+            count: 1,
+            isChecked: false
+        },
+        //30
+        {
+            item: "passport",
+            count: 0,
+            isChecked: false
+        },
+
+
     ]
     
     if (data.rainDay > 0){
@@ -119,6 +199,11 @@ const get_clothes = async (location) => {
         clothes[3].count = 1;
         clothes[4].count = 1;
         clothes[11].count += data.rainDay;
+        clothes[18].count = 1;
+        clothes[23].count = 1;
+        clothes[24].count = 1;
+        clothes[25].count = 1;
+        clothes[28].count = 1;
 
       }
     if (data.lowWeatherDays > 0){
@@ -143,6 +228,9 @@ const get_clothes = async (location) => {
     if (data.highUV > 0){
         clothes[16].count = 1;
         clothes[17].count = 1;
+    }
+    if(location[location.length-2] != 'u' && location[location.length-1] != 's'){
+        clothes[30].count = 1;
     }
     console.log(clothes);
     return clothes;
