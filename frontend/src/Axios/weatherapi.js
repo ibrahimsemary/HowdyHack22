@@ -1,4 +1,3 @@
-//import React from "react";
 import axios from "axios";
 
 const get_weathers = async (location) => {
@@ -7,16 +6,17 @@ const get_weathers = async (location) => {
     // let city = 'tokyo';
     // let country = 'jp'
     // let location = `${city}, ${country}`
+    // location = "tokyo,jp";
 
     const HIGH_WEATHER_DAY_TEMP_MIN = 87
-    const MEDIUM_WEATHER_DAY_TEMP_MIN = 65
+    const MEDIUM_WEATHER_DAY_TEMP_MIN = 55
 
     let weather = {
         highWeatherDays: 0,
         mediumWeatherDays: 0,
         lowWeatherDays: 0,
-        rainDay: 0
-
+        rainDay: 0,
+        highUV: 0
     }
 
     const options = {
@@ -28,31 +28,29 @@ const get_weathers = async (location) => {
         }
     };
 
-    const response = await axios.request(options).then(function (response) {
-        const periods = response.data.response[0].periods;
-        // min temp and max temp for that day, pecepitation, snowIN, uvi
-        // high weather day: 87
-        // medium weather day: 65 - 87
-        // low weather day: < 65
-        periods.map((period) => {
-            if (period?.maxTempF >= HIGH_WEATHER_DAY_TEMP_MIN) {
-                weather.highWeatherDays += 1;
-            } else if (period?.maxTempF >= MEDIUM_WEATHER_DAY_TEMP_MIN) {
-                weather.mediumWeatherDays += 1;
-            } else {
-                weather.lowWeatherDays += 1;
-            }
-            if (period?.precipIN > 0){
-                weather.rainDayrainDay +=1;
-            }
-
-        })
-
-    }).catch(function (error) {
-        console.error(error);
-    });
-
+    const response =  await axios.request(options);
+    const periods = response.data.response[0].periods;
+    // min temp and max temp for that day, pecepitation, snowIN, uvi
+    // high weather day: 87
+    // medium weather day: 65 - 87
+    // low weather day: < 65
+    periods.map((period) => {
+        if (period?.minTempF >= HIGH_WEATHER_DAY_TEMP_MIN) {
+            weather.highWeatherDays += 1;
+        } else if (period?.minTempF >= MEDIUM_WEATHER_DAY_TEMP_MIN) {
+            weather.mediumWeatherDays += 1;
+        } else {
+            weather.lowWeatherDays += 1;
+        }
+        if (period?.precipIN > 0){
+            weather.rainDayrainDay +=1;
+        }
+        if(period?.uvi >= 6){
+            weather.highUV += 1;
+        }
+    })
     console.log(weather);
+    return weather;
     
 };
 
