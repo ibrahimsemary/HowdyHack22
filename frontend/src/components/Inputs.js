@@ -19,10 +19,8 @@ const Inputs = (props) => {
         props.setPlacesSelected(comingFrom, goingTo);
     };
 
-    console.log(props);
-
     return (
-        <div className='ui container'>
+        <div>
             <div className='input'>
                 <h2>Location coming from:</h2>
                 <TextField
