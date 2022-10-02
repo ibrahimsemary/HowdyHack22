@@ -15,7 +15,8 @@ const App = (props) => {
         }
     };
     return (
-        <div className="ui container">
+        <div className='ui container'>
+            <div className="header"><h1>Ultimate Packer:</h1></div>
             <div>
                 <Inputs />
             </div>

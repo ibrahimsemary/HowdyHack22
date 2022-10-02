@@ -19,13 +19,16 @@ export const setRecList = (items) => {
     };
 };
 
-
 export const setMyList = (items) => {
     return {
-        type: "REC_LIST",
+        type: "MY_LIST",
         payload: items,
     };
 };
 
-
-
+export const deleteFromMyList = (item) => {
+    return {
+        type: "REMOVE_FROM_MY_LIST",
+        payload: item,
+    };
+};
