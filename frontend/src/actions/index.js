@@ -11,7 +11,9 @@ export const setPlacesSelected = (fromLoc, toLoc) => {
 export const setRecList = (items) => {
     const list = [];
     items.forEach((element) => {
-        list.push({ item: element.item, isChecked: element.isChecked });
+        if(element.count > 0){
+            list.push(element)
+        }
     });
     return {
         type: "REC_LIST",
