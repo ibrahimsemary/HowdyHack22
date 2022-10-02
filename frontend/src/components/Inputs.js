@@ -19,7 +19,10 @@ const Inputs = (props) => {
     };
 
     return (
-        <div>
+        <div className='input-container'>
+            <div className='header'>
+                <h1>Ultimate Packer:</h1>
+            </div>
             <div className='two-grid'>
                 <div>
                     <div className='to-center'>

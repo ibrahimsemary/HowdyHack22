@@ -73,22 +73,30 @@ const RecList = (props) => {
     return (
         <div className='ui container'>
             <br />
-            <div>
-                <h2>Reccomended List:</h2>
+            <div className='to-center'>
+                <div className='header'>
+                    {" "}
+                    <h2>Reccomended List:</h2>
+                </div>
             </div>
-            <List
-                sx={{
-                    width: "100%",
-                    maxWidth: 360,
-                    bgcolor: "background.paper",
-                }}
-            >
-                {displayList()}
-                <br />
-                <button className='ui primary button' onClick={removeChecked}>
-                    Add to my list
-                </button>
-            </List>
+            <div className='to-center'>
+                <List
+                    sx={{
+                        width: "100%",
+                        maxWidth: 360,
+                        bgcolor: "background.paper",
+                    }}
+                >
+                    {displayList()}
+                    <br />
+                    <button
+                        className='ui primary button'
+                        onClick={removeChecked}
+                    >
+                        Add to my list
+                    </button>
+                </List>
+            </div>
         </div>
     );
 };
