@@ -7,7 +7,7 @@ import Checkbox from "@mui/material/Checkbox";
 import { connect } from "react-redux";
 import { setMyList, setRecList } from "../actions";
 
-const MyList = (props) => {
+const RecList = (props) => {
     useEffect(() => {
         const list = [
             {
@@ -37,8 +37,9 @@ const MyList = (props) => {
         props.recList.forEach((item) => {
             if (item.isChecked === false) {
                 newRecList.push(item);
+            } else {
+                temp.push(item.item);
             }
-            temp.push(item.item);
         });
         props.setMyList(temp);
         props.setRecList(newRecList);
@@ -72,7 +73,9 @@ const MyList = (props) => {
     return (
         <div className='ui container'>
             <br />
-            <h3>Reccomended List:</h3>
+            <div>
+                <h2>Reccomended List:</h2>
+            </div>
             <List
                 sx={{
                     width: "100%",
@@ -96,4 +99,4 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
     setRecList: setRecList,
     setMyList: setMyList,
-})(MyList);
+})(RecList);

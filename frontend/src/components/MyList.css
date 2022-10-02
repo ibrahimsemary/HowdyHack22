@@ -1,0 +1,52 @@
+.mygrid {
+    display: grid;
+    grid-template-columns: 100% 35%;
+}
+
+.my-button {
+    display: flex;
+    justify-content: center;
+}
+
+.input {
+    padding-top: 10px;
+}
+
+.two-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-left: 15%;
+    margin-right: 15%;
+}
+.header {
+    display: flex;
+    margin: 5%;
+    justify-content: center;
+    align-items: center;
+}
+.to-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search-button {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10%;
+}
+.actual-button {
+    width: 100%;
+}
+.text-field-actual {
+    width: 100%;
+}
+.some-space {
+    margin: 20px;
+}
+.to-center-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10%;
+}
