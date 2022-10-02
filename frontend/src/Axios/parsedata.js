@@ -199,11 +199,7 @@ const get_clothes = async (from, location) => {
         clothes[3].count = 1;
         clothes[4].count = 1;
         clothes[11].count += data.rainDay;
-        clothes[18].count = 1;
-        clothes[23].count = 1;
-        clothes[24].count = 1;
-        clothes[25].count = 1;
-        clothes[28].count = 1;
+        
 
       }
     if (data.lowWeatherDays > 0){
@@ -224,6 +220,11 @@ const get_clothes = async (from, location) => {
         clothes[13].count += data.highWeatherDays;
         clothes[14].count += 1;
         clothes[15].count +=data.highWeatherDays;
+        clothes[18].count = 1;
+        clothes[23].count = 1;
+        clothes[24].count = 1;
+        clothes[25].count = 1;
+        clothes[28].count = 1;
     }
     if (data.highUV > 0){
         clothes[16].count = 1;
