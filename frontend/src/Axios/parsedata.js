@@ -183,7 +183,13 @@ const get_clothes = async (location) => {
             item: "ID",
             count: 1,
             isChecked: false
-        }
+        },
+        //30
+        {
+            item: "passport",
+            count: 0,
+            isChecked: false
+        },
 
 
     ]
@@ -222,6 +228,9 @@ const get_clothes = async (location) => {
     if (data.highUV > 0){
         clothes[16].count = 1;
         clothes[17].count = 1;
+    }
+    if(location[location.length-2] != 'u' && location[location.length-1] != 's'){
+        clothes[30].count = 1;
     }
     console.log(clothes);
     return clothes;
