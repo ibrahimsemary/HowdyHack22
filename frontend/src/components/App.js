@@ -1,8 +1,31 @@
-import React from 'react';
-import Inputs from './Inputs';
+import React from "react";
+import Inputs from "./Inputs";
+import { connect } from "react-redux";
+import Output from "./Output";
 
-const App = () => {
-    return <div> <Inputs /> </div> 
-}
-
-export default App;
+const App = (props) => {
+    const displayOutput = () => {
+        if (props.selected) {
+            return (
+                <div>
+                    {" "}
+                    <Output />
+                </div>
+            );
+        }
+    };
+    return (
+        <div className="ui container">
+            <div>
+                <Inputs />
+            </div>
+            {displayOutput()}
+        </div>
+    );
+};
+const mapStateToProps = (state) => {
+    return {
+        selected: state.placesSelected === null ? false : true,
+    };
+};
+export default connect(mapStateToProps)(App);
