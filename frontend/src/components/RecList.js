@@ -5,78 +5,47 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Checkbox from "@mui/material/Checkbox";
 import { connect } from "react-redux";
-import { setMyList, setRecList } from "../actions";
+import { setMyList, setRecList, setRecListChecked } from "../actions";
 
 const RecList = (props) => {
-    useEffect(() => {
-        const list = [
-            {
-                item: "shoes",
-                isChecked: false,
-            },
-            {
-                item: "underwear",
-                isChecked: false,
-            },
-            {
-                item: "hats",
-                isChecked: false,
-            },
-            {
-                item: "jacket",
-                isChecked: false,
-            },
-        ];
-        props.setRecList(list);
-    }, []);
     const removeChecked = () => {
         //add to new list
         //remove from old list
         const temp = [];
-        const newRecList = [];
         props.recList.forEach((item) => {
-            if (item.isChecked === false) {
-                newRecList.push(item);
-            } else {
+            if (item.isChecked === true) {
                 temp.push(item.item);
             }
         });
         props.setMyList(temp);
-        props.setRecList(newRecList);
     };
     const displayList = () => {
-        for (const key in props.recList) {
-            return;
+        if (props.recList.length !== 0) {
+            return props.recList.map((item, index) => {
+                return (
+                    <ListItem key={index}>
+                        <ListItemButton>
+                            <Checkbox
+                                edge='start'
+                                tabIndex={-1}
+                                checked={item.isChecked}
+                                onClick={() => {
+                                    props.setRecListChecked(
+                                        index,
+                                        props.recList
+                                    );
+                                }}
+                            />
+                            <ListItemText primary={item.item} />
+                        </ListItemButton>
+                    </ListItem>
+                );
+            });
         }
-
-        return props.recList.map((item, index) => {
-            return (
-                <ListItem key={index}>
-                    <ListItemButton>
-                        <Checkbox
-                            edge='start'
-                            tabIndex={-1}
-                            checked={item.isChecked}
-                            onClick={() => {
-                                let objIndex = props.recList.findIndex(
-                                    (obj) => obj === item
-                                );
-                                const new_obj = props.recList;
-                                new_obj[objIndex].isChecked =
-                                    !new_obj[objIndex].isChecked;
-                                props.setRecList(new_obj);
-                            }}
-                        />
-                        <ListItemText primary={item.item} />
-                    </ListItemButton>
-                </ListItem>
-            );
-        });
     };
 
     return (
         <div className='ui container'>
-            <br />
             <div className='to-center'>
                 <div className='header'>
                     {" "}
@@ -113,4 +82,5 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
     setRecList: setRecList,
     setMyList: setMyList,
+    setRecListChecked: setRecListChecked,
 })(RecList);

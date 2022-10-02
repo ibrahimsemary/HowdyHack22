@@ -18,9 +18,8 @@ const Inputs = (props) => {
 
     const submit = async () => {
         await props.setPlacesSelected(comingFrom, goingTo);
-        const response = await get_clothes(goingTo);
-        props.setRecList(response)
-        };
+        await props.setRecList(goingTo);
+    };
 
     return (
         <div className='input-container'>
@@ -111,6 +110,7 @@ const Inputs = (props) => {
 const mapStateToProps = (state) => {
     return {
         placesSelected: state.placesSelected,
+        recList: state.recList,
     };
 };
 

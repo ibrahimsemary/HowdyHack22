@@ -1,3 +1,4 @@
+import get_clothes from "../Axios/parsedata";
 export const setPlacesSelected = (fromLoc, toLoc) => {
     return {
         type: "PLACES_SELECTED",
@@ -8,15 +9,34 @@ export const setPlacesSelected = (fromLoc, toLoc) => {
     };
 };
 
-export const setRecList = (items) => {
+export const setRecList = (location) => async (dispatch) => {
     const list = [];
-    items.forEach((element) => {
-        if(element.count > 0){
-            list.push(element)
+    const response = await get_clothes(location);
+    response.forEach((element) => {
+        if (element.count > 0) {
+            list.push(element);
         }
     });
+    dispatch({ type: "REC_LIST", payload: list });
+};
+
+export const setRecListChecked = (myIndex, items) => {
+    const list = [];
+    items.forEach((element, index) => {
+        if (index !== myIndex) {
+            list.push(element);
+        } else {
+            list.push({
+                item: element.item,
+                count: element.count,
+                isChecked: !element.isChecked,
+            });
+        }
+    });
+    console.log(list);
+
     return {
-        type: "REC_LIST",
+        type: "REC_LIST_CHECKED",
         payload: list,
     };
 };
