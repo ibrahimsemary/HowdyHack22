@@ -4,7 +4,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import get_clothes from "../Axios/parsedata";
-import { setRecList } from "../actions";
+import { setDuration, setRecList } from "../actions";
 
 import { connect } from "react-redux";
 import { setPlacesSelected } from "../actions";
@@ -18,7 +18,22 @@ const Inputs = (props) => {
 
     const submit = async () => {
         await props.setPlacesSelected(comingFrom, goingTo);
-        await props.setRecList(goingTo);
+        await props.setRecList(comingFrom, goingTo);
+        if (depDate !== null && returnDate !== null) {
+            let days = (returnDate.valueOf() - depDate.valueOf()) / 86400000;
+            let big = 0;
+            let small = 0;
+            while (days > 0) {
+                if (days >= 15) {
+                    big += 1;
+                    days -= 15;
+                } else {
+                    small += 1;
+                    days -= 10;
+                }
+            }
+            props.setDuration(big, small);
+        }
     };
 
     return (
@@ -111,10 +126,12 @@ const mapStateToProps = (state) => {
     return {
         placesSelected: state.placesSelected,
         recList: state.recList,
+        duration: state.duration,
     };
 };
 
 export default connect(mapStateToProps, {
     setPlacesSelected: setPlacesSelected,
     setRecList: setRecList,
+    setDuration: setDuration,
 })(Inputs);
